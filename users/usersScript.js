@@ -44,7 +44,7 @@ function fetchUsers() {
     // Fazendo uma requisição à API
     fetch(apiUrl)
         .then(response => response.json())
-        .then(users => { 
+        .then(users => {
             // Itera sobre a lista de usuários e cria elementos HTML
             users.users.forEach(user => {
                 pageUsers.push(new User(user.id, user.firstName, user.lastName, user.email, user.age, user.image));
@@ -85,3 +85,149 @@ function removeUser(userId) {
     // Atualizando lista na tela
     displayUsers();
 }
+
+const nome = document.querySelector('#name');
+const sobrenome = document.querySelector('#lastName');
+const email = document.querySelector('#email');
+const idade = document.querySelector('#age');
+const imagem = document.querySelector('#photo');
+const form = document.querySelector('#add-user-form');
+
+//Mostra mensagem de erro
+const showsError = (input, message) => {
+    // Obtem o elemento campo-formulario
+    const formField = input.parentElement;
+    // Adiciona a class de erro
+    formField.classList.remove('success');
+    formField.classList.add('error');
+    // Mostra a mensagem de erro
+    const error = formField.querySelector('small');
+    error.textContent = message;
+};
+
+//Mostra mensagem de sucesso
+const showsSuccess = (input) => {
+    // Obtem o elemento do campo-formulario
+    const formField = input.parentElement;
+    // Remove a class de erro
+    formField.classList.remove('error');
+    formField.classList.add('success');
+    // Oculta a mensagem de erro
+    const error = formField.querySelector('small');
+    error.textContent = '';
+};
+
+// Checa entrada obrigatória
+const isRequired = value => value === '' ? false : true;
+
+// Checa tamanho da entrada
+const isBetween = (length, min, max) => length < min || length > max ? false : true;
+
+
+// Valida o campo do nome
+const checkFirstName = () => {
+    let valid = false;
+    const min = 3, max = 50;
+    const nomeVal = nome.value.trim();
+    if (!isRequired(nomeVal)) {
+        showsError(nome, 'Nome não pode ficar em branco.');
+        console.log("Nome inválido!");
+    } else if (!isBetween(nomeVal.length, min, max)) {
+        showsError(nome, `Nome deve ter entre ${min} e ${max} caracteres.`)
+        console.log("Nome inválido!");
+    } else {
+        showsSuccess(nome);
+        valid = true;
+    }
+    return valid;
+};
+
+// Valida o campo de sobrenome
+const checkLastName = () => {
+    let valid = false;
+    const min = 3, max = 50;
+    const sobrenomeVal = sobrenome.value.trim();
+    if (!isRequired(sobrenomeVal)) {
+        showsError(sobrenome, 'Sobrenome não pode ficar em branco.');
+        console.log("Sobrenome inválido!");
+    } else if (!isBetween(sobrenomeVal.length, min, max)) {
+        showsError(sobrenome, `Sobrenome deve ter entre ${min} e ${max} caracteres.`)
+        console.log("Sobrenome inválido!");
+    } else {
+        showsSuccess(sobrenome);
+        valid = true;
+    }
+    return valid;
+};
+
+// Checa se e-mail é válido
+const isEmailValid = (email) => {
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+};
+
+// Valida o campo de email
+const checkEmail = () => {
+    let valid = false;
+    const emailVal = email.value.trim();
+    if (!isRequired(emailVal)) {
+        showsError(email, 'E-mail não pode ficar em branco.');
+    } else if (!isEmailValid(emailVal)) {
+        showsError(email, 'E-mail inválido.')
+    } else {
+        showsSuccess(email);
+        valid = true;
+    }
+    return valid;
+};
+
+// Valida o campo de Idade
+const checkAge = () => {
+    let valid = false;
+    const min = 1, max = 119;
+    const idadeNumberVal = parseInt(idade.value);
+    if (!isRequired(idade.value)) {
+        showsError(idade, 'Idade não pode ficar em branco.');
+    } else if (!isBetween(idadeNumberVal, min, max)) {
+        showsError(idade, 'Idade deve ser positiva e menor que 120')
+        console.log("Idade inválido!");
+    } else {
+        showsSuccess(idade);
+        valid = true;
+    }
+    return valid;
+}
+
+function checkValidHttpUrl() {
+    const imagemVal = imagem.value.trim();
+    var regex = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
+    if (regex.test(imagemVal) || imagemVal ===  ""){
+        console.log("url aceita");
+        showsSuccess(imagem);
+        return true;
+    } else {
+        showsError(imagem, 'URL inválida.');
+        console.log("URL inválida!");
+    }
+}
+
+// Modifica o manipulador de eventos de envio
+form.addEventListener('submit', function (e) {
+    // Previne a submissão do formulário
+    e.preventDefault();
+    const isNameValid = checkFirstName();
+    const isLastNameValid = checkLastName();
+    const isEmailValid = checkEmail();
+    const isAgeValid = checkAge();
+    const isUrlValid = checkValidHttpUrl();
+
+    // Submete o formulário, se válido
+    if (isNameValid &&
+        isLastNameValid &&
+        isEmailValid &&
+        isAgeValid &&
+        isUrlValid) {
+        console.log("form aceito");
+        addUser();
+    }
+});

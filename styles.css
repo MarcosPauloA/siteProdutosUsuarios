@@ -4,7 +4,7 @@ body {
     padding: 0;
     background-color: #111;
     color: aliceblue;
-
+    text-align: center;
 }
 
 .header {
@@ -123,3 +123,12 @@ button.remove-btn:hover {
 input {
     background-color: rgb(55, 62, 64);
 }   
+
+.campo-formulario {
+    display: flex;
+    flex-direction: column;
+}
+
+small{
+    color: red;
+}

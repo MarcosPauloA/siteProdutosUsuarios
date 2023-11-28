@@ -14,19 +14,37 @@
     <div id="app">
         <h1>Adicionar Produto</h1>
         <form id="add-product-form">
-            <label for="titulo">Título:</label>
-            <input type="text" id="titulo" required>
-            <label for="descricao">Descrição:</label>
-            <input type="text" id="descricao" required>
-            <label for="marca">Marca:</label>
-            <input type="text" id="marca" required>
-            <label for="preco">Preço:</label>
-            <input type="number" id="preco">
-            <label for="photo">Imagem:</label>
-            <input type="url" id="photo">
-            <label for="categoria">Categoria:</label>
-            <input type="text" id="categoria">
-            <button type="button" onclick="addProduct()">Adicionar</button>
+            <div class="campo-formulario">
+                <label for="titulo">Título:</label>
+                <input type="text" id="titulo" required>
+                <small></small>
+            </div>
+            <div class="campo-formulario">
+                <label for="descricao">Descrição:</label>
+                <input type="text" id="descricao" required>
+                <small></small>
+            </div>
+            <div class="campo-formulario">
+                <label for="marca">Marca:</label>
+                <input type="text" id="marca" required>
+                <small></small>
+            </div>
+            <div class="campo-formulario">
+                <label for="preco">Preço:</label>
+                <input type="number" id="preco">
+                <small></small>
+            </div>
+            <div class="campo-formulario">
+                <label for="photo">Imagem:</label>
+                <input type="url" id="photo">
+                <small></small>
+            </div>
+            <div class="campo-formulario">
+                <label for="categoria">Categoria:</label>
+                <input type="text" id="categoria">
+                <small></small>
+            </div>
+            <button type="submit">Adicionar</button>
         </form>
         <h1>Lista de Produtos</h1>
         <ul class="grid-container" id="product-list"></ul>

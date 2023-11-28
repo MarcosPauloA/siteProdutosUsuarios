@@ -14,17 +14,33 @@
     <div id="app">
         <h1>Adicionar Usuário</h1>
         <form id="add-user-form">
-            <label for="name">Nome:</label>
-            <input type="text" id="name" required>
-            <label for="lastName">Sobrenome:</label>
-            <input type="text" id="lastName" required>
-            <label for="email">Email:</label>
-            <input type="email" id="email" required>
-            <label for="age">Idade:</label>
-            <input type="number" id="age">
-            <label for="photo">Imagem:</label>
-            <input type="url" id="photo">
-            <button type="button" onclick="addUser()">Adicionar</button>
+            <div class="campo-formulario">
+                <label for="name">Nome:</label>
+                <input type="text" id="name" required>
+                <small></small>
+            </div>
+            <div class="campo-formulario">
+                <label for="lastName">Sobrenome:</label>
+                <input type="text" id="lastName" required>
+                <small></small>
+            </div>
+
+            <div class="campo-formulario">
+                <label for="email">Email:</label>
+                <input type="email" id="email" required>
+                <small></small>
+            </div>
+            <div class="campo-formulario">
+                <label for="age">Idade:</label>
+                <input type="number" id="age">
+                <small></small>
+            </div>
+            <div class="campo-formulario">
+                <label for="photo">Imagem:</label>
+                <input type="url" id="photo">
+                <small></small>
+            </div>
+            <button type="submit">Adicionar</button>
         </form>
         <h1>Lista de Usuários</h1>
         <ul class="grid-container" id="user-list"></ul>
