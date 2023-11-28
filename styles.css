@@ -2,27 +2,40 @@ body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f5f5f5;
+    background-color: #111;
+    color: aliceblue;
+
+}
+
+.header {
+    background-color: #034281;
+    text-align: center;
+    padding: 20px;
+}
+
+.header a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: black;
 }
 
 #app {
     max-width: 1024px;
     margin: 20px auto;
-    background-color: #fff;
+    background-color: #222;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
 }
 
 form {
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0,
-            0, 0.2);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
 h1 {
-    color: #333;
+    color: #eee;
     text-align: center;
 }
 
@@ -34,7 +47,7 @@ h1 {
 
 label {
     margin-bottom: 5px;
-    color: #555;
+    color: #aaa;
 }
 
 input {
@@ -62,7 +75,7 @@ ul {
     padding: 0;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
 .grid-container {
@@ -74,10 +87,10 @@ ul {
 }
 
 .card {
-    background-color: #fff;
+    background-color: #222;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.05);
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
@@ -87,10 +100,11 @@ ul {
 
 .space {
     padding: 5px 0;
+    color: #eee;
 }
 
 strong {
-    color: #333;
+    color: #eee;
 }
 
 button.remove-btn {
@@ -105,3 +119,7 @@ button.remove-btn {
 button.remove-btn:hover {
     background-color: #c9302c;
 }
+
+input {
+    background-color: rgb(55, 62, 64);
+}   
